@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
 import EmojiPicker, { Theme } from "emoji-picker-react";
 import { SmileIcon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 export default function ChatFooter() {
   const [text, setText] = useState("");
@@ -32,6 +32,7 @@ export default function ChatFooter() {
         Send
       </Button>
       <EmojiPicker
+        lazyLoadEmojis
         style={{
           position: "absolute",
           bottom: 65,

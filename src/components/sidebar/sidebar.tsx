@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import SidebarMessageItem from "./sidebar-message-item";
 import SidebarTopNav from "./sidebar-top-nav";
 
@@ -8,7 +11,6 @@ const matches = [
     text: "Hey! How are you?",
     imageUrl: "/test_avatar.jpg",
     isVerified: true,
-    state: "unselected"
   },
   {
     id: 2,
@@ -16,7 +18,6 @@ const matches = [
     text: "Hey! How are you Peter dumbass?",
     imageUrl: "/test_avatar.jpg",
     isVerified: false,
-    state: "selected"
   },
   {
     id: 3,
@@ -24,7 +25,6 @@ const matches = [
     text: "Really long text full of words that can't fit into the screen",
     imageUrl: "/test_avatar.jpg",
     isVerified: false,
-    state: "unselected"
   },
   {
     id: 4,
@@ -32,7 +32,6 @@ const matches = [
     text: "Hey! How are you?",
     imageUrl: "/test_avatar.jpg",
     isVerified: false,
-    state: "unselected"
   },
   {
     id: 5,
@@ -40,11 +39,19 @@ const matches = [
     text: "Hey! How are you?",
     imageUrl: "/test_avatar.jpg",
     isVerified: false,
-    state: "unselected"
   },
 ] as const;
 
 export default function Sidebar() {
+  const pathname = usePathname();
+  const match = pathname.match(/^\/messages\/(\d+)$/);
+  const selectedId = match ? Number(match[1]) : null;
+
+  const getStateForMatch = (id: number) => {
+    if (!selectedId) return "default";
+    return selectedId === id ? "selected" : "unselected";
+  };
+
   return (
     <aside className="fixed inset-0 w-[356px] bg-[#111418] border-r border-[#3c444f] h-full flex flex-col">
       <SidebarTopNav />
@@ -54,7 +61,11 @@ export default function Sidebar() {
       </div>
       <div className="overflow-y-auto flex-1 no-scrollbar">
         {matches.map((match) => (
-          <SidebarMessageItem key={match.id} {...match} />
+          <SidebarMessageItem
+            key={match.id}
+            state={getStateForMatch(match.id)}
+            {...match}
+          />
         ))}
       </div>
     </aside>

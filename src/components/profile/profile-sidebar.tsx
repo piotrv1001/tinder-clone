@@ -1,5 +1,6 @@
+"use client";
+
 import { datingGoals, images } from "@/constants";
-import ImageSlider from "./image-slider";
 import ProfileBasicInfo from "./profile-basic-info";
 import ProfileDatingGoal from "./profile-dating-goal";
 import ProfileSection from "./profile-section";
@@ -17,14 +18,38 @@ import {
   Sunrise,
   Wine,
 } from "lucide-react";
+import Image from "next/image";
+import ImageSlider from "../image-slider";
 
 export default function ProfileSidebar() {
   return (
     <div className="h-full overflow-y-auto no-scrollbar bg-[#111418] border-l border-[#3c444f]">
       <div className="w-full aspect-[4/5]">
-        <ImageSlider images={images} />
+        <ImageSlider
+          data={images}
+          keyProp="id"
+          render={(image) => {
+            return (
+              <Image
+                src={image.src}
+                alt="User image"
+                className="object-cover absolute inset-0 select-none"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            );
+          }}
+        />
       </div>
       <ProfileBasicInfo name="Paulina" age={24} height={170} distance={8} />
+      <ProfileSection showBorderBottom={false}>
+        <p className="text-[#b9bfc8]">
+          Hey, I am Paulina! I am open to meeting new people, especially if it
+          is a good excuse to take a break from my thesis. Besides writing (or
+          not writing) my thesis, I work and take care of my puppy. You can
+          bribe me with them. You can find me as a passive scroller on the feed
+        </p>
+      </ProfileSection>
       <ProfileSection showBorderBottom={false}>
         <ProfileDatingGoal datingGoal={datingGoals[0]} />
       </ProfileSection>

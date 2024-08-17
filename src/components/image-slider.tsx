@@ -8,14 +8,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
-type ImageSliderProps = {
-  images: { id: string; src: string }[];
+type ObjectType = {
+  [key: string]: any;
 };
 
-export default function ImageSlider({ images }: ImageSliderProps) {
+type ImageSliderProps<T> = {
+  data: T[];
+  keyProp: keyof T;
+  render: (item: T) => React.ReactNode;
+};
+
+export default function ImageSlider<T extends ObjectType>({
+  data,
+  keyProp,
+  render,
+}: ImageSliderProps<T>) {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -43,9 +52,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
               <button
                 key={i}
                 className={`mx-1 h-[5px] flex-grow rounded-full p-0  ${
-                  i === current - 1
-                    ? "bg-white hover:bg-white"
-                    : "bg-[#505965]"
+                  i === current - 1 ? "bg-white hover:bg-white" : "bg-[#505965]"
                 }`}
                 onClick={() => api?.scrollTo(i)}
               />
@@ -53,18 +60,12 @@ export default function ImageSlider({ images }: ImageSliderProps) {
           </div>
         </div>
         <CarouselContent className="ml-0 w-full h-full">
-          {images.map((image) => (
+          {data.map((item) => (
             <CarouselItem
-              key={image.id}
+              key={item[keyProp]}
               className="pl-0 w-full h-full relative"
             >
-              <Image
-                src={image.src}
-                alt="User image"
-                className="object-cover absolute inset-0"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+              {render(item)}
             </CarouselItem>
           ))}
         </CarouselContent>
