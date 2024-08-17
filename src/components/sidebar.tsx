@@ -42,54 +42,6 @@ const matches = [
     isVerified: false,
     state: "unselected"
   },
-  {
-    id: 56,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
-  {
-    id: 55,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
-  {
-    id: 54,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
-  {
-    id: 53,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
-  {
-    id: 52,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
-  {
-    id: 51,
-    name: "Oliwia",
-    text: "Hey! How are you?",
-    imageUrl: "/test_avatar.jpg",
-    isVerified: false,
-    state: "unselected"
-  },
 ] as const;
 
 export default function Sidebar() {
