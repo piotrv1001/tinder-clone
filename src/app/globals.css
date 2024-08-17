@@ -75,6 +75,15 @@
 
   .no-scrollbar {
     -ms-overflow-style: none;
-    scrollbar-width: none; 
+    scrollbar-width: none;
   }
+}
+
+.match-text {
+  text-shadow: 1px 1px 1px #000000, 1px 2px 1px #000000, 1px 3px 1px #000000,
+    1px 4px 1px #000000, 1px 5px 1px #000000, 1px 6px 1px #000000,
+    1px 7px 1px #000000, 1px 8px 1px #000000, 1px 9px 1px #000000,
+    1px 10px 1px #000000, 1px 14px 4px rgba(0, 0, 0, 0.5),
+    1px 18px 8px rgba(0, 0, 0, 0.4), 1px 22px 20px rgba(0, 0, 0, 0.3),
+    1px 26px 40px rgba(0, 0, 0, 0.4);
 }
