@@ -3,7 +3,7 @@ import ProfileSidebar from "@/components/profile-sidebar";
 
 export default function MessagesPage() {
   return (
-    <div className="grid grid-cols-3 h-full">
+    <div className="grid grid-cols-3 h-full overflow-hidden">
       <div className="col-span-2">
         <MessageHeader
           imgUrl="/test_avatar.jpg"
@@ -11,9 +11,7 @@ export default function MessagesPage() {
           date={new Date()}
         />
       </div>
-      <div className="col-span-1 h-full">
-        <ProfileSidebar />
-      </div>
+      <ProfileSidebar />
     </div>
   );
 }
