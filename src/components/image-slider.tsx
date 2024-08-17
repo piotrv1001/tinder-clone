@@ -45,7 +45,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
                 className={`mx-1 h-[5px] flex-grow rounded-full p-0  ${
                   i === current - 1
                     ? "bg-white hover:bg-white"
-                    : "bg-neutral-500/75 hover:bg-neutral-500"
+                    : "bg-[#505965]"
                 }`}
                 onClick={() => api?.scrollTo(i)}
               />
@@ -68,8 +68,8 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2 transition-opacity ease-in duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 group-hover:disabled:opacity-50" />
-        <CarouselNext className="right-2 top-1/2 -translate-y-1/2 transition-opacity ease-in duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 group-hover:disabled:opacity-50" />
+        <CarouselPrevious className="bg-black text-[#7c8591] hover:bg-black hover:text-[#7c8591] border-black left-2 top-1/2 -translate-y-1/2 transition-opacity ease-in duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 group-hover:disabled:opacity-50" />
+        <CarouselNext className="bg-black text-[#7c8591] hover:bg-black hover:text-[#7c8591] border-black right-2 top-1/2 -translate-y-1/2 transition-opacity ease-in duration-200 opacity-0 group-hover:opacity-100 disabled:opacity-0 group-hover:disabled:opacity-50" />
       </Carousel>
     </>
   );

@@ -1,4 +1,33 @@
+import { ChatMessage } from "./types/chat-message";
 import { DatingGoal } from "./types/dating-goal";
+
+export const chatMessages: ChatMessage[] = [
+  {
+    id: "1",
+    content: "Hey! How are you?",
+    createdAt: new Date(),
+    isOtherPerson: false,
+  },
+  {
+    id: "2",
+    content: "I'm good, thanks! How about you?",
+    createdAt: new Date(),
+    isOtherPerson: true,
+  },
+  {
+    id: "3",
+    content: "Whaaaaaaat? That's awesome!",
+    createdAt: new Date(),
+    isOtherPerson: true,
+    avatarUrl: "/test_avatar.jpg",
+  },
+  {
+    id: "4",
+    content: "You are a dumbass",
+    createdAt: new Date(),
+    isOtherPerson: false,
+  },
+]
 
 export const images = [
   {
