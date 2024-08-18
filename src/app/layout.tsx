@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/sidebar/sidebar";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={cn(inter.className, "h-full")}>
-        <Sidebar />
-        <main className="h-full bg-black pl-[356px]">{children}</main>
+      <body className={cn(inter.className, "h-full bg-black")}>
+        {children}
+        <Toaster />
       </body>
     </html>
   );
