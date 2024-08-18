@@ -1,6 +1,8 @@
 import { ChatMessage } from "./types/chat-message";
 import { DatingGoal } from "./types/dating-goal";
 
+export const MAX_PROFILE_DESCRIPTION_LENGTH = 500;
+
 export const chatMessages: ChatMessage[] = [
   {
     id: "1",

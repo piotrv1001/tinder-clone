@@ -11,7 +11,7 @@ export default function SidebarUserButton({
   imgUrl,
 }: SidebarUserButtonProps) {
   return (
-    <Link href="/">
+    <Link href="/profile">
       <div className="flex gap-x-2 rounded-full hover:bg-[#411b27] p-1 pr-2 w-max items-center cursor-pointer transition-colors duration-200">
         <Image
           src={imgUrl}
