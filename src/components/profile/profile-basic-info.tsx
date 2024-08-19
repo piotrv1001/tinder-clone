@@ -3,9 +3,9 @@ import ProfileSection from "./profile-section";
 
 type ProfileBasicInfoProps = {
   name: string;
-  age: number;
-  height: number;
-  distance: number;
+  age?: number | null;
+  height?: number | null;
+  distance?: number | null;
 };
 
 export default function ProfileBasicInfo({
@@ -20,8 +20,8 @@ export default function ProfileBasicInfo({
         {name}&nbsp;{age}
       </div>
       <div className="space-y-1">
-        <IconText icon={Ruler} text={`${height} cm`} />
-        <IconText icon={MapPin} text={`${distance} kilometers away`} />
+        {height && <IconText icon={Ruler} text={`${height} cm`} />}
+        {distance && <IconText icon={MapPin} text={`${distance} kilometers away`} />}
       </div>
     </ProfileSection>
   );

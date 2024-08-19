@@ -8,17 +8,52 @@ generator client {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  images        Image[]
+  id               String    @id @default(cuid())
+  name             String?
+  email            String    @unique
+  emailVerified    DateTime?
+  image            String?
+  description      String?
+  age              Int?
+  height           Int?
+  relationshipGoal String?
+
+  // Basics
+  education   String?
+  chat        String?
+  loveStyle   String?
+  familyPlans String?
+
+  // Lifestyle
+  smoker  String?
+  gym     String?
+  diet    String?
+  alcohol String?
+  sleep   String?
+  pets    String?
+
+  jobTitle String?
+  company  String?
+  school   String?
+
+  accounts Account[]
+  sessions Session[]
+  images   Image[]
+  passions Passion[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Passion {
+  id     String @id @default(cuid())
+  name   String
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Image {

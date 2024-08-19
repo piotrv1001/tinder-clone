@@ -1,8 +1,8 @@
 import { getCurrentUser } from "@/lib/utils";
-import { UserRepo, UserWithImages } from "../repo/user-repo";
+import { UserRepo, UserWithImagesAndPassions } from "../repo/user-repo";
 
 export class UserService {
-  static async getLoggedUserWithImages(): Promise<UserWithImages | null> {
+  static async getLoggedUser(): Promise<UserWithImagesAndPassions | null> {
     const user = await getCurrentUser();
     if (!user?.id) return null;
 

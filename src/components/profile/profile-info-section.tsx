@@ -1,10 +1,11 @@
 import { LucideIcon } from "lucide-react";
 import ProfileSection from "./profile-section";
 import ProfileInfoItem from "./profile-info-item";
+import { ProfileInfoItem as TProfileInfoItem } from "@/types/profile-info-item";
 
 type ProfileInfoSectionProps = {
   title: string;
-  profileInfoItems: { title: string; icon?: LucideIcon; isShared?: boolean }[];
+  profileInfoItems: TProfileInfoItem[];
   showBorderBottom?: boolean;
 };
 
