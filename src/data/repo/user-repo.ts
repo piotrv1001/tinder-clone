@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { ServerResponse } from "@/types/server-response";
-import { User } from "@prisma/client";
+import { Image, User } from "@prisma/client";
+
+export type UserWithImages = User & { images: Image[] };
 
 export class UserRepo {
   static async updateUser(
@@ -24,6 +26,23 @@ export class UserRepo {
       const user = await db.user.findUnique({
         where: {
           id,
+        },
+      });
+      return { status: "success", data: user };
+    } catch {
+      return { status: "error", message: "Failed to get user by id" };
+    }
+  }
+  static async getUserWithImagesById(
+    id: string
+  ): Promise<ServerResponse<UserWithImages | null>> {
+    try {
+      const user = await db.user.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          images: true,
         },
       });
       return { status: "success", data: user };

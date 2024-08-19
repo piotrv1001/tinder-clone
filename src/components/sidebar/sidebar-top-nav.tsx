@@ -13,7 +13,7 @@ export default function SidebarTopNav() {
       {showLogo ? (
         <SidebarLogo />
       ) : (
-        <SidebarUserButton imgUrl="/test_avatar.jpg" name="Peter" />
+        <SidebarUserButton />
       )}
       <LogoutButton />
     </nav>

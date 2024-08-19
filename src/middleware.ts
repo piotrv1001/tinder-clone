@@ -2,6 +2,7 @@ import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/utils";
+import { apiRoutes } from "./routes";
 
 const { auth } = NextAuth(authConfig);
 
@@ -10,7 +11,7 @@ export default auth(async (req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth && !!user?.emailVerified;
 
-  const isApiRoute = nextUrl.pathname.startsWith("/api/auth");
+  const isApiRoute = apiRoutes.includes(nextUrl.pathname);
   if (isApiRoute) {
     return NextResponse.next();
   }

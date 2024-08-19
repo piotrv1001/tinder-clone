@@ -3,13 +3,16 @@ import EditProfileDescription from "@/components/profile/edit-profile-descriptio
 import EditProfilePassions from "@/components/profile/edit-profile-passions";
 import ImageGrid from "@/components/profile/image-grid";
 import SaveProfileButton from "@/components/profile/save-profile-button";
+import { UserService } from "@/data/service/user-service";
 
-export default function ProfileEditPage() {
+export default async function ProfileEditPage() {
+  const userWithImages = await UserService.getLoggedUserWithImages();
+
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="relative">
         <div className="w-[375px] h-[667px] rounded-[8px] overflow-y-auto no-scrollbar bg-black shadow-md shadow-[#21262e] pb-[75px]">
-          <ImageGrid />
+          <ImageGrid initialImages={userWithImages?.images ?? []} />
           <SectionDescription text="Add a video, pic or Loop to get 4% closer to completing your profile and you may event get more Likes." />
           <EditProfileDescription name="Piotr" />
           <SectionDescription text="Do not include social media handles or other contact information in your profile." />
