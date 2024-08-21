@@ -1,3 +1,4 @@
+import { getFirstName } from "@/lib/utils";
 import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { PiStarFourFill } from "react-icons/pi";
@@ -40,7 +41,7 @@ export default function MatchFoundCard({
         </div>
       </div>
       <div className="text-white font-semibold text-lg">
-        You matched with {matchName}
+        You matched with {getFirstName(matchName)}
       </div>
       <HeartIcon className="size-full" />
       <HeartIcon className="size-[75%]" />

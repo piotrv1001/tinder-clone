@@ -11,7 +11,9 @@ export default auth(async (req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth && !!user?.emailVerified;
 
-  const isApiRoute = apiRoutes.includes(nextUrl.pathname);
+  const isApiRoute = apiRoutes.some((path) =>
+    path.startsWith(nextUrl.pathname)
+  );
   if (isApiRoute) {
     return NextResponse.next();
   }
@@ -32,5 +34,5 @@ export default auth(async (req) => {
 });
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+}

@@ -1,6 +1,8 @@
 import { ChatMessage } from "./types/chat-message";
 import { DatingGoal } from "./types/dating-goal";
 
+export const DEFAULT_MATCH_PAGE_SIZE = 10;
+
 export const MAX_PROFILE_DESCRIPTION_LENGTH = 500;
 
 export const chatMessages: ChatMessage[] = [

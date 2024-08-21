@@ -36,13 +36,59 @@ model User {
   company  String?
   school   String?
 
-  accounts Account[]
-  sessions Session[]
-  images   Image[]
-  passions Passion[]
+  accounts           Account[]
+  sessions           Session[]
+  images             Image[]
+  passions           Passion[]
+  likesSent          Like[]      @relation("likes_sent")
+  likesReceived      Like[]      @relation("likes_received")
+  matches            Match[]     @relation("matches_as_initiator")
+  matchedBy          Match[]     @relation("matches_as_target")
+  rejectionsSent     Rejection[] @relation("rejections_sent")
+  rejectionsReceived Rejection[] @relation("rejections_received")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id         String @id @default(cuid())
+  sender     User   @relation("likes_sent", fields: [senderId], references: [id])
+  senderId   String
+  receiver   User   @relation("likes_received", fields: [receiverId], references: [id])
+  receiverId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([senderId, receiverId])
+}
+
+model Match {
+  id          String @id @default(cuid())
+  initiator   User   @relation("matches_as_initiator", fields: [initiatorId], references: [id])
+  initiatorId String
+  target      User   @relation("matches_as_target", fields: [targetId], references: [id])
+  targetId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([initiatorId, targetId])
+}
+
+model Rejection {
+  id         String @id @default(cuid())
+  sender     User   @relation("rejections_sent", fields: [senderId], references: [id])
+  senderId   String
+  receiver   User   @relation("rejections_received", fields: [receiverId], references: [id])
+  receiverId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime
+
+  @@unique([senderId, receiverId])
 }
 
 model Passion {

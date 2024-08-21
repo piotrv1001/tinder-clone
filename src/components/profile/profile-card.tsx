@@ -19,6 +19,7 @@ import ProfileInfoSection from "./profile-info-section";
 import { ProfileInfoItem } from "@/types/profile-info-item";
 import { UserWithImagesAndPassions } from "@/data/repo/user-repo";
 import ProfileSection from "./profile-section";
+import { getFirstName } from "@/lib/utils";
 
 type ProfileCardProps = {
   userProfile: UserWithImagesAndPassions;
@@ -107,7 +108,7 @@ export default function ProfileCard({
         />
       </div>
       <ProfileBasicInfo
-        name={user.name?.split(" ")?.[0] ?? "User"}
+        name={getFirstName(user.name) ?? "User"}
         age={user.age}
         height={user.height}
       />

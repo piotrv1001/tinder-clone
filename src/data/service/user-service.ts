@@ -1,5 +1,9 @@
 import { getCurrentUser } from "@/lib/utils";
-import { UserRepo, UserWithImagesAndPassions } from "../repo/user-repo";
+import {
+  UserRepo,
+  UserWithImages,
+  UserWithImagesAndPassions,
+} from "../repo/user-repo";
 
 export class UserService {
   static async getLoggedUser(): Promise<UserWithImagesAndPassions | null> {
@@ -10,5 +14,17 @@ export class UserService {
     if (userWithImagesRes.status === "error") return null;
 
     return userWithImagesRes.data;
+  }
+  static async getMatchesForLoggedUser(): Promise<UserWithImages[]> {
+    const user = await getCurrentUser();
+    if (!user?.id) return [];
+
+    const potentialMatchesRes = await UserRepo.getPotentialMatches({
+      userId: user.id,
+      page: 1,
+    });
+    if (potentialMatchesRes.status === "error") return [];
+
+    return potentialMatchesRes.data;
   }
 }
