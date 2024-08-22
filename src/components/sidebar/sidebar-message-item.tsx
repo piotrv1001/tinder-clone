@@ -1,14 +1,12 @@
-import { cn } from "@/lib/utils";
-import { CheckIcon } from "lucide-react";
+import { cn, getFirstName } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 type SidebarMessageItemProps = {
-  id: number;
+  id: string;
   name: string;
   text: string;
-  imageUrl: string;
-  isVerified: boolean;
+  imageUrl?: string | null;
   state: "selected" | "unselected" | "default";
 };
 
@@ -17,7 +15,6 @@ export default function SidebarMessageItem({
   name,
   text,
   imageUrl,
-  isVerified,
   state,
 }: SidebarMessageItemProps) {
   return (
@@ -30,21 +27,20 @@ export default function SidebarMessageItem({
         )}
       >
         <div className="px-4 py-3 flex items-center gap-x-4">
-          <Image
-            src={imageUrl}
-            alt="User avatar"
-            width={78}
-            height={78}
-            className="rounded-full size-[78px]"
-          />
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt="User avatar"
+              width={78}
+              height={78}
+              className="rounded-full size-[78px]"
+            />
+          )}
           <div className="flex flex-col">
             <div className="flex gap-x-2 items-center">
-              <span className="text-lg font-bold text-white">{name}</span>
-              {isVerified && (
-                <div className="size-[18px] rounded-full bg-[#1786ff] flex justify-center items-center">
-                  <CheckIcon size={12} className="text-white" />
-                </div>
-              )}
+              <span className="text-lg font-bold text-white">
+                {getFirstName(name)}
+              </span>
             </div>
             <p className="text-sm text-[#7c8591] line-clamp-1">{text}</p>
           </div>

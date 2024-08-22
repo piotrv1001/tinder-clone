@@ -4,6 +4,11 @@ import {
   UserWithImages,
   UserWithImagesAndPassions,
 } from "../repo/user-repo";
+import {
+  MatchRepo,
+  MatchWithMessage,
+  MatchWithMessages,
+} from "../repo/match-repo";
 
 export class UserService {
   static async getLoggedUser(): Promise<UserWithImagesAndPassions | null> {
@@ -26,5 +31,30 @@ export class UserService {
     if (potentialMatchesRes.status === "error") return [];
 
     return potentialMatchesRes.data;
+  }
+  static async getMatchedUsersForLoggedUser(): Promise<MatchWithMessage[]> {
+    const user = await getCurrentUser();
+    if (!user?.id) return [];
+
+    const matchesRes = await MatchRepo.getMatchesByUserIdWithLastMessage(
+      user.id
+    );
+    if (matchesRes.status === "error") return [];
+
+    return matchesRes.data;
+  }
+  static async getMatchById(
+    matchId: string
+  ): Promise<MatchWithMessages | null> {
+    const user = await getCurrentUser();
+    if (!user?.id) return null;
+
+    const matchRes = await MatchRepo.getMatchByUserIdWithMessages({
+      matchId,
+      userId: user.id,
+    });
+    if (matchRes.status === "error") return null;
+
+    return matchRes.data;
   }
 }

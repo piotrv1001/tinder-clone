@@ -83,7 +83,7 @@ export default function ProfileCard({
 
   const passions = user.passions.map((passion) => ({
     title: passion.name,
-    isShared: matchProfile?.passions.some(
+    isShared: userProfile?.passions.some(
       (matchPassion) => matchPassion.name === passion.name
     ),
   }));
